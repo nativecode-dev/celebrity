@@ -1,8 +1,8 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Design;
-
-namespace Celebrity.Data
+﻿namespace Celebrity.Data
 {
+    using Microsoft.EntityFrameworkCore;
+    using Microsoft.EntityFrameworkCore.Design;
+
     public class DesignTimeDbContextFactory : IDesignTimeDbContextFactory<CelebrityDataContext>
     {
         public CelebrityDataContext CreateDbContext(string[] args)

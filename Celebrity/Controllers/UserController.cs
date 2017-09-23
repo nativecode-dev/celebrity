@@ -1,8 +1,8 @@
-﻿using System;
-using Microsoft.AspNetCore.Mvc;
-
-namespace Celebrity.Controllers
+﻿namespace Celebrity.Controllers
 {
+    using System;
+    using Microsoft.AspNetCore.Mvc;
+
     [Route("users")]
     public class UserController : Controller
     {

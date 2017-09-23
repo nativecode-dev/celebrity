@@ -1,22 +1,22 @@
-﻿using System;
-using System.IO;
-using System.Threading.Tasks;
-using Celebrity.Data;
-using Microsoft.AspNetCore;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
-using Nito.AsyncEx;
-
-namespace Celebrity
+﻿namespace Celebrity
 {
+    using System;
+    using System.IO;
+    using System.Threading.Tasks;
+    using Data;
+    using Microsoft.AspNetCore;
+    using Microsoft.AspNetCore.Hosting;
+    using Microsoft.EntityFrameworkCore;
+    using Microsoft.Extensions.DependencyInjection;
+    using Nito.AsyncEx;
+
     internal class Program
     {
         private const string ErrorFileName = "error.txt";
 
         public static void Main(string[] args)
         {
-            AsyncContext.Run(async () => await MainAsync(args).ConfigureAwait(false));
+            AsyncContext.Run(async () => await Program.MainAsync(args).ConfigureAwait(false));
         }
 
         private static async Task MainAsync(string[] args)
@@ -41,7 +41,7 @@ namespace Celebrity
             }
             catch (Exception ex)
             {
-                var filename = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, ErrorFileName);
+                var filename = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, Program.ErrorFileName);
                 await File.WriteAllTextAsync(filename, ex.ToString()).ConfigureAwait(false);
             }
         }

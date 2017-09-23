@@ -1,8 +1,8 @@
-﻿using System;
-using System.ComponentModel.DataAnnotations;
-
-namespace Celebrity.Data
+﻿namespace Celebrity.Data
 {
+    using System;
+    using System.ComponentModel.DataAnnotations;
+
     public abstract class DataModel : IDataModel
     {
         [DataType(DataType.DateTime)]

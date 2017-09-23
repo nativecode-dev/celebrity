@@ -1,9 +1,9 @@
-﻿using Celebrity.Data.Models;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
-
-namespace Celebrity.Data
+﻿namespace Celebrity.Data
 {
+    using Microsoft.AspNetCore.Identity;
+    using Microsoft.EntityFrameworkCore;
+    using Models;
+
     public class CelebrityDataContext : DbContext
     {
         public CelebrityDataContext(DbContextOptions options) : base(options)

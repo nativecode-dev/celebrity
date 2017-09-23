@@ -1,7 +1,7 @@
-﻿using System;
-
-namespace Celebrity.Data
+﻿namespace Celebrity.Data
 {
+    using System;
+
     public interface IDataModel
     {
         DateTimeOffset DateCreated { get; set; }
