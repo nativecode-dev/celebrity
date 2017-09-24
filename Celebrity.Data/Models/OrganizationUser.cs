@@ -2,12 +2,12 @@
 {
     using System;
     using System.ComponentModel.DataAnnotations.Schema;
-    using Microsoft.AspNetCore.Identity;
+    using Identity;
 
-    public class OrganizationIdentityUser : DataModel<Guid>
+    public class OrganizationUser : DataModel<Guid>
     {
-        [ForeignKey(nameof(IdentityUser))]
-        public string IdentityUserId { get; set; }
+        [ForeignKey(nameof(User))]
+        public Guid UserId { get; set; }
 
         [ForeignKey(nameof(Organization))]
         public Guid OrganizationId { get; set; }

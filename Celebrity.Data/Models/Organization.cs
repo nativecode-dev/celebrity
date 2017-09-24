@@ -3,24 +3,25 @@
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
+    using Core;
 
     public class Organization : DataModel<Guid>
     {
         public string Description { get; set; }
 
         [Required]
-        [StringLength(128)]
+        [StringLength(CommonLengths.Slug)]
         public string Name { get; set; }
 
         [Required]
-        [StringLength(128)]
+        [StringLength(CommonLengths.Slug)]
         public string Slug { get; set; }
 
-        public virtual ICollection<OrganizationIdentityUser> Users { get; set; }
+        public virtual ICollection<OrganizationUser> Users { get; set; }
 
         public virtual ICollection<WebHook> WebHooks { get; set; } = new List<WebHook>();
 
-        [StringLength(256)]
+        [StringLength(CommonLengths.Url)]
         public string Website { get; set; }
     }
 }

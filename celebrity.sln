@@ -13,6 +13,14 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Celebrity.Services", "Celeb
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Celebrity.Models", "Celebrity.Models\Celebrity.Models.csproj", "{00511DE7-E960-4D96-93BD-BF8D646DC762}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "Tests\Tests.csproj", "{7E68210F-7267-49AF-8385-43C9E521B8EF}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Config", "Config", "{303014D7-DE33-4021-A6CD-8BFE0751A239}"
+	ProjectSection(SolutionItems) = preProject
+		.gitattributes = .gitattributes
+		.gitignore = .gitignore
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +47,10 @@ Global
 		{00511DE7-E960-4D96-93BD-BF8D646DC762}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{00511DE7-E960-4D96-93BD-BF8D646DC762}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{00511DE7-E960-4D96-93BD-BF8D646DC762}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7E68210F-7267-49AF-8385-43C9E521B8EF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7E68210F-7267-49AF-8385-43C9E521B8EF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7E68210F-7267-49AF-8385-43C9E521B8EF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7E68210F-7267-49AF-8385-43C9E521B8EF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

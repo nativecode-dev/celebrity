@@ -3,11 +3,12 @@
     using System;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
+    using Core;
 
     public class WebHookParameter : DataModel<Guid>
     {
         [Required]
-        [StringLength(128)]
+        [StringLength(CommonLengths.Slug)]
         public string Name { get; set; }
 
         public string Value { get; set; }

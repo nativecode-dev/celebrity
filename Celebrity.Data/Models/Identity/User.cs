@@ -1,11 +1,15 @@
-﻿namespace Celebrity.Data
+﻿namespace Celebrity.Data.Models.Identity
 {
     using System;
     using System.ComponentModel.DataAnnotations;
     using Core;
+    using Microsoft.AspNetCore.Identity;
 
-    public abstract class DataModel : IDataModel
+    public class User : IdentityUser<Guid>, IDataModel<Guid>
     {
+        [StringLength(128, MinimumLength = 32)]
+        public string ApiToken { get; set; }
+
         [DataType(DataType.DateTime)]
         public DateTimeOffset? DateCreated { get; set; }
 
@@ -17,11 +21,5 @@
 
         [StringLength(CommonLengths.Email)]
         public string UserModified { get; set; }
-    }
-
-    public abstract class DataModel<TKey> : DataModel, IDataModel<TKey> where TKey : IEquatable<TKey>
-    {
-        [Key]
-        public TKey Id { get; set; }
     }
 }

@@ -4,9 +4,9 @@
 
     public interface IDataModel
     {
-        DateTimeOffset DateCreated { get; set; }
+        DateTimeOffset? DateCreated { get; set; }
 
-        DateTimeOffset DateModified { get; set; }
+        DateTimeOffset? DateModified { get; set; }
 
         string UserCreated { get; set; }
 

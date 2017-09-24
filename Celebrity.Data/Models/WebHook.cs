@@ -4,20 +4,21 @@
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
+    using Core;
 
     public class WebHook : DataModel<Guid>
     {
         [Required]
-        [StringLength(128)]
+        [StringLength(CommonLengths.Slug)]
         public string Name { get; set; }
 
         [ForeignKey(nameof(Organization))]
         public Guid OrganizationId { get; set; }
 
-        public ICollection<WebHookParameter> Parameters { get; set; } = new List<WebHookParameter>();
+        public virtual ICollection<WebHookParameter> Parameters { get; set; } = new List<WebHookParameter>();
 
         [Required]
-        [StringLength(1024)]
+        [StringLength(CommonLengths.Url)]
         public string Url { get; set; }
     }
 }

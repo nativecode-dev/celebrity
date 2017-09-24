@@ -1,44 +1,30 @@
-﻿namespace Celebrity.Data.Migrations
-{
-    using System;
-    using Microsoft.EntityFrameworkCore.Migrations;
+﻿using Microsoft.EntityFrameworkCore.Migrations;
+using System;
+using System.Collections.Generic;
 
+namespace Celebrity.Data.Migrations
+{
     public partial class Initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "IdentityRoles",
+                name: "OrganizationRoles",
                 columns: table => new
                 {
-                    Id = table.Column<string>(type: "TEXT", nullable: false),
+                    Id = table.Column<Guid>(type: "BLOB", nullable: false),
                     ConcurrencyStamp = table.Column<string>(type: "TEXT", nullable: true),
+                    DateCreated = table.Column<DateTimeOffset>(type: "TEXT", nullable: false),
+                    DateModified = table.Column<DateTimeOffset>(type: "TEXT", nullable: false),
                     Name = table.Column<string>(type: "TEXT", nullable: true),
-                    NormalizedName = table.Column<string>(type: "TEXT", nullable: true)
+                    NormalizedName = table.Column<string>(type: "TEXT", nullable: true),
+                    UserCreated = table.Column<string>(type: "TEXT", maxLength: 128, nullable: true),
+                    UserModified = table.Column<string>(type: "TEXT", maxLength: 128, nullable: true)
                 },
-                constraints: table => { table.PrimaryKey("PK_IdentityRoles", x => x.Id); });
-
-            migrationBuilder.CreateTable(
-                name: "IdentityUsers",
-                columns: table => new
+                constraints: table =>
                 {
-                    Id = table.Column<string>(type: "TEXT", nullable: false),
-                    AccessFailedCount = table.Column<int>(type: "INTEGER", nullable: false),
-                    ConcurrencyStamp = table.Column<string>(type: "TEXT", nullable: true),
-                    Email = table.Column<string>(type: "TEXT", nullable: true),
-                    EmailConfirmed = table.Column<bool>(type: "INTEGER", nullable: false),
-                    LockoutEnabled = table.Column<bool>(type: "INTEGER", nullable: false),
-                    LockoutEnd = table.Column<DateTimeOffset>(type: "TEXT", nullable: true),
-                    NormalizedEmail = table.Column<string>(type: "TEXT", nullable: true),
-                    NormalizedUserName = table.Column<string>(type: "TEXT", nullable: true),
-                    PasswordHash = table.Column<string>(type: "TEXT", nullable: true),
-                    PhoneNumber = table.Column<string>(type: "TEXT", nullable: true),
-                    PhoneNumberConfirmed = table.Column<bool>(type: "INTEGER", nullable: false),
-                    SecurityStamp = table.Column<string>(type: "TEXT", nullable: true),
-                    TwoFactorEnabled = table.Column<bool>(type: "INTEGER", nullable: false),
-                    UserName = table.Column<string>(type: "TEXT", nullable: true)
-                },
-                constraints: table => { table.PrimaryKey("PK_IdentityUsers", x => x.Id); });
+                    table.PrimaryKey("PK_OrganizationRoles", x => x.Id);
+                });
 
             migrationBuilder.CreateTable(
                 name: "Organizations",
@@ -54,25 +40,58 @@
                     UserModified = table.Column<string>(type: "TEXT", maxLength: 128, nullable: true),
                     Website = table.Column<string>(type: "TEXT", maxLength: 256, nullable: true)
                 },
-                constraints: table => { table.PrimaryKey("PK_Organizations", x => x.Id); });
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Organizations", x => x.Id);
+                });
 
             migrationBuilder.CreateTable(
-                name: "OrganizationIdentityUser",
+                name: "Users",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "BLOB", nullable: false),
+                    AccessFailedCount = table.Column<int>(type: "INTEGER", nullable: false),
+                    ApiToken = table.Column<string>(type: "TEXT", maxLength: 128, nullable: true),
+                    ConcurrencyStamp = table.Column<string>(type: "TEXT", nullable: true),
+                    DateCreated = table.Column<DateTimeOffset>(type: "TEXT", nullable: false),
+                    DateModified = table.Column<DateTimeOffset>(type: "TEXT", nullable: false),
+                    Email = table.Column<string>(type: "TEXT", nullable: true),
+                    EmailConfirmed = table.Column<bool>(type: "INTEGER", nullable: false),
+                    LockoutEnabled = table.Column<bool>(type: "INTEGER", nullable: false),
+                    LockoutEnd = table.Column<DateTimeOffset>(type: "TEXT", nullable: true),
+                    NormalizedEmail = table.Column<string>(type: "TEXT", nullable: true),
+                    NormalizedUserName = table.Column<string>(type: "TEXT", nullable: true),
+                    PasswordHash = table.Column<string>(type: "TEXT", nullable: true),
+                    PhoneNumber = table.Column<string>(type: "TEXT", nullable: true),
+                    PhoneNumberConfirmed = table.Column<bool>(type: "INTEGER", nullable: false),
+                    SecurityStamp = table.Column<string>(type: "TEXT", nullable: true),
+                    TwoFactorEnabled = table.Column<bool>(type: "INTEGER", nullable: false),
+                    UserCreated = table.Column<string>(type: "TEXT", maxLength: 128, nullable: true),
+                    UserModified = table.Column<string>(type: "TEXT", maxLength: 128, nullable: true),
+                    UserName = table.Column<string>(type: "TEXT", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Users", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "OrganizationUser",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "BLOB", nullable: false),
                     DateCreated = table.Column<DateTimeOffset>(type: "TEXT", nullable: false),
                     DateModified = table.Column<DateTimeOffset>(type: "TEXT", nullable: false),
-                    IdentityUserId = table.Column<string>(type: "TEXT", nullable: true),
                     OrganizationId = table.Column<Guid>(type: "BLOB", nullable: false),
                     UserCreated = table.Column<string>(type: "TEXT", maxLength: 128, nullable: true),
+                    UserId = table.Column<Guid>(type: "BLOB", nullable: false),
                     UserModified = table.Column<string>(type: "TEXT", maxLength: 128, nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_OrganizationIdentityUser", x => x.Id);
+                    table.PrimaryKey("PK_OrganizationUser", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_OrganizationIdentityUser_Organizations_OrganizationId",
+                        name: "FK_OrganizationUser_Organizations_OrganizationId",
                         column: x => x.OrganizationId,
                         principalTable: "Organizations",
                         principalColumn: "Id",
@@ -128,40 +147,40 @@
                 });
 
             migrationBuilder.CreateIndex(
-                "IX_OrganizationIdentityUser_OrganizationId",
-                "OrganizationIdentityUser",
-                "OrganizationId");
+                name: "IX_OrganizationUser_OrganizationId",
+                table: "OrganizationUser",
+                column: "OrganizationId");
 
             migrationBuilder.CreateIndex(
-                "IX_WebHookParameter_WebHookId",
-                "WebHookParameter",
-                "WebHookId");
+                name: "IX_WebHookParameter_WebHookId",
+                table: "WebHookParameter",
+                column: "WebHookId");
 
             migrationBuilder.CreateIndex(
-                "IX_WebHooks_OrganizationId",
-                "WebHooks",
-                "OrganizationId");
+                name: "IX_WebHooks_OrganizationId",
+                table: "WebHooks",
+                column: "OrganizationId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                "IdentityRoles");
+                name: "OrganizationRoles");
 
             migrationBuilder.DropTable(
-                "IdentityUsers");
+                name: "OrganizationUser");
 
             migrationBuilder.DropTable(
-                "OrganizationIdentityUser");
+                name: "Users");
 
             migrationBuilder.DropTable(
-                "WebHookParameter");
+                name: "WebHookParameter");
 
             migrationBuilder.DropTable(
-                "WebHooks");
+                name: "WebHooks");
 
             migrationBuilder.DropTable(
-                "Organizations");
+                name: "Organizations");
         }
     }
 }

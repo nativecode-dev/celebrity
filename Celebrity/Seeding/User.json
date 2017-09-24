@@ -1,0 +1,38 @@
+﻿[
+  {
+    "Description": "NativeCode Development",
+    "Id": "4d7319ad-7c41-4d08-a963-56cc88bab179",
+    "Name": "NativeCode",
+    "Slug": "native-code",
+    "UserCreated": "system@localhost",
+    "UserModified": "system@locahost",
+    "Website": "https://www.nativecode.com"
+  },
+  {
+    "Description": "NativeCode Development (Alpha)",
+    "Id": "1846ede4-d77e-40f9-9e64-8a7ddff1130a",
+    "Name": "NativeCode (Alpha)",
+    "Slug": "native-code-alpha",
+    "UserCreated": "system+alpha@localhost",
+    "UserModified": "system+alpha@locahost",
+    "Website": "https://alpha.nativecode.com"
+  },
+  {
+    "Description": "NativeCode Development (Beta)",
+    "Id": "d20f4430-3078-4af6-b3da-76f483f03131",
+    "Name": "NativeCode (Beta)",
+    "Slug": "native-code-beta",
+    "UserCreated": "system+beta@localhost",
+    "UserModified": "system+beta@locahost",
+    "Website": "https://beta.nativecode.com"
+  },
+  {
+    "Description": "NativeCode Development (Gamma)",
+    "Id": "b4b0e982-0885-4ad2-b363-c45b88d25489",
+    "Name": "NativeCode (Gamma)",
+    "Slug": "native-code-gamma",
+    "UserCreated": "system+gamma@localhost",
+    "UserModified": "system+gamma@locahost",
+    "Website": "https://gamma.nativecode.com"
+  }
+]

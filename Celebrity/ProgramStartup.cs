@@ -2,6 +2,7 @@
 {
     using System;
     using Data;
+    using Data.Models.Identity;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.AspNetCore.Identity;
@@ -23,7 +24,7 @@
         {
             services.AddDbContext<CelebrityDataContext>(this.ConfigureDataContext);
 
-            services.AddIdentity<IdentityUser, IdentityRole>()
+            services.AddIdentity<User, Role>()
                 .AddEntityFrameworkStores<CelebrityDataContext>()
                 .AddDefaultTokenProviders();
 
