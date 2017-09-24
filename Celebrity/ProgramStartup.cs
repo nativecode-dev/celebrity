@@ -49,7 +49,7 @@
         {
             var connection = this.Configuration.GetConnectionString("Default");
 
-            options.UseSqlite(connection,
+            options.UseMySql(connection,
                 builder => builder.MigrationsAssembly(typeof(CelebrityDataContext).Assembly.FullName));
         }
     }

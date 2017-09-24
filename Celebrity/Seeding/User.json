@@ -1,38 +1,42 @@
 ﻿[
   {
-    "Description": "NativeCode Development",
-    "Id": "4d7319ad-7c41-4d08-a963-56cc88bab179",
-    "Name": "NativeCode",
-    "Slug": "native-code",
+    "Email": "system@localhost",
+    "EmailConfirmed": true,
+    "Id": "3bde37cf-b241-4b7d-bea3-363488232138",
+    "NormalizedEmail": "system@localhost",
+    "NormalizedUserName": "system",
     "UserCreated": "system@localhost",
     "UserModified": "system@locahost",
-    "Website": "https://www.nativecode.com"
+    "UserName": "system"
   },
   {
-    "Description": "NativeCode Development (Alpha)",
-    "Id": "1846ede4-d77e-40f9-9e64-8a7ddff1130a",
-    "Name": "NativeCode (Alpha)",
-    "Slug": "native-code-alpha",
+    "Email": "system+alpha@localhost",
+    "EmailConfirmed": true,
+    "Id": "7129828d-3046-4823-be95-b8b93fc5538d",
+    "NormalizedEmail": "system+alpha@localhost",
+    "NormalizedUserName": "system+alpha",
     "UserCreated": "system+alpha@localhost",
     "UserModified": "system+alpha@locahost",
-    "Website": "https://alpha.nativecode.com"
+    "UserName": "system+alpha"
   },
   {
-    "Description": "NativeCode Development (Beta)",
-    "Id": "d20f4430-3078-4af6-b3da-76f483f03131",
-    "Name": "NativeCode (Beta)",
-    "Slug": "native-code-beta",
+    "Email": "system+beta@localhost",
+    "EmailConfirmed": true,
+    "Id": "76cc4fda-8a1c-4b74-b3f5-7863da743127",
+    "NormalizedEmail": "system+beta@localhost",
+    "NormalizedUserName": "system+beta",
     "UserCreated": "system+beta@localhost",
     "UserModified": "system+beta@locahost",
-    "Website": "https://beta.nativecode.com"
+    "UserName": "system+beta"
   },
   {
-    "Description": "NativeCode Development (Gamma)",
-    "Id": "b4b0e982-0885-4ad2-b363-c45b88d25489",
-    "Name": "NativeCode (Gamma)",
-    "Slug": "native-code-gamma",
+    "Email": "system+gamma@localhost",
+    "EmailConfirmed": true,
+    "Id": "2a9b6604-3cc6-43ba-b82d-7de62b9b02a8",
+    "NormalizedEmail": "system+gamma@localhost",
+    "NormalizedUserName": "system+gamma",
     "UserCreated": "system+gamma@localhost",
     "UserModified": "system+gamma@locahost",
-    "Website": "https://gamma.nativecode.com"
+    "UserName": "system+gamma"
   }
 ]

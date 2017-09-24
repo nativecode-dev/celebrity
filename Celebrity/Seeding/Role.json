@@ -1,0 +1,22 @@
+﻿[
+  {
+    "Id": "9594627d-4ddf-44ac-b401-e9e0ff4aee1e",
+    "Name": "Administrator",
+    "NormalizedName": "administrator"
+  },
+  {
+    "Id": "125ec992-4ba2-4627-9ef4-54d14a848526",
+    "Name": "Automation",
+    "NormalizedName": "automation"
+  },
+  {
+    "Id": "cf2249a2-0451-4d7c-a42d-2736fbbcac8b",
+    "Name": "Free",
+    "NormalizedName": "free"
+  },
+  {
+    "Id": "768a1d0f-5d60-4b68-bf32-78979e08c4fe",
+    "Name": "Paid",
+    "NormalizedName": "paid"
+  }
+]

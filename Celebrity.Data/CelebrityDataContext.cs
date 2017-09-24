@@ -18,6 +18,10 @@
 
         public virtual DbSet<Organization> Organizations { get; set; }
 
+        public virtual DbSet<OrganizationUser> OrganizationUsers { get; set; }
+
+        public virtual DbSet<UserRole> UserRoles { get; set; }
+
         public virtual DbSet<User> Users { get; set; }
 
         public virtual DbSet<WebHook> WebHooks { get; set; }
@@ -37,8 +41,6 @@
 
         private void UpdateAuditFields()
         {
-            this.ChangeTracker.DetectChanges();
-
             var entries = from entry in this.ChangeTracker.Entries()
                 let type = entry.Entity.GetType()
                 where type.GetInterfaces().Any(i => i == typeof(IDataModel))

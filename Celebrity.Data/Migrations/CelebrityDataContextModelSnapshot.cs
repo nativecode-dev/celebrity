@@ -17,6 +17,7 @@ namespace Celebrity.Data.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
+                .HasAnnotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn)
                 .HasAnnotation("ProductVersion", "2.0.0-rtm-26452");
 
             modelBuilder.Entity("Celebrity.Data.Models.Identity.Role", b =>
@@ -26,23 +27,23 @@ namespace Celebrity.Data.Migrations
 
                     b.Property<string>("ConcurrencyStamp");
 
-                    b.Property<DateTimeOffset>("DateCreated");
+                    b.Property<DateTimeOffset?>("DateCreated");
 
-                    b.Property<DateTimeOffset>("DateModified");
+                    b.Property<DateTimeOffset?>("DateModified");
 
                     b.Property<string>("Name");
 
                     b.Property<string>("NormalizedName");
 
                     b.Property<string>("UserCreated")
-                        .HasMaxLength(128);
+                        .HasMaxLength(254);
 
                     b.Property<string>("UserModified")
-                        .HasMaxLength(128);
+                        .HasMaxLength(254);
 
                     b.HasKey("Id");
 
-                    b.ToTable("OrganizationRoles");
+                    b.ToTable("Roles");
                 });
 
             modelBuilder.Entity("Celebrity.Data.Models.Identity.User", b =>
@@ -57,9 +58,9 @@ namespace Celebrity.Data.Migrations
 
                     b.Property<string>("ConcurrencyStamp");
 
-                    b.Property<DateTimeOffset>("DateCreated");
+                    b.Property<DateTimeOffset?>("DateCreated");
 
-                    b.Property<DateTimeOffset>("DateModified");
+                    b.Property<DateTimeOffset?>("DateModified");
 
                     b.Property<string>("Email");
 
@@ -84,10 +85,10 @@ namespace Celebrity.Data.Migrations
                     b.Property<bool>("TwoFactorEnabled");
 
                     b.Property<string>("UserCreated")
-                        .HasMaxLength(128);
+                        .HasMaxLength(254);
 
                     b.Property<string>("UserModified")
-                        .HasMaxLength(128);
+                        .HasMaxLength(254);
 
                     b.Property<string>("UserName");
 
@@ -96,14 +97,42 @@ namespace Celebrity.Data.Migrations
                     b.ToTable("Users");
                 });
 
+            modelBuilder.Entity("Celebrity.Data.Models.Identity.UserRole", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<DateTimeOffset?>("DateCreated");
+
+                    b.Property<DateTimeOffset?>("DateModified");
+
+                    b.Property<Guid>("RoleId");
+
+                    b.Property<string>("UserCreated")
+                        .HasMaxLength(254);
+
+                    b.Property<Guid>("UserId");
+
+                    b.Property<string>("UserModified")
+                        .HasMaxLength(254);
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("RoleId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("UserRoles");
+                });
+
             modelBuilder.Entity("Celebrity.Data.Models.Organization", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<DateTimeOffset>("DateCreated");
+                    b.Property<DateTimeOffset?>("DateCreated");
 
-                    b.Property<DateTimeOffset>("DateModified");
+                    b.Property<DateTimeOffset?>("DateModified");
 
                     b.Property<string>("Description");
 
@@ -116,13 +145,13 @@ namespace Celebrity.Data.Migrations
                         .HasMaxLength(128);
 
                     b.Property<string>("UserCreated")
-                        .HasMaxLength(128);
+                        .HasMaxLength(254);
 
                     b.Property<string>("UserModified")
-                        .HasMaxLength(128);
+                        .HasMaxLength(254);
 
                     b.Property<string>("Website")
-                        .HasMaxLength(256);
+                        .HasMaxLength(2083);
 
                     b.HasKey("Id");
 
@@ -134,25 +163,27 @@ namespace Celebrity.Data.Migrations
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<DateTimeOffset>("DateCreated");
+                    b.Property<DateTimeOffset?>("DateCreated");
 
-                    b.Property<DateTimeOffset>("DateModified");
+                    b.Property<DateTimeOffset?>("DateModified");
 
                     b.Property<Guid>("OrganizationId");
 
                     b.Property<string>("UserCreated")
-                        .HasMaxLength(128);
+                        .HasMaxLength(254);
 
                     b.Property<Guid>("UserId");
 
                     b.Property<string>("UserModified")
-                        .HasMaxLength(128);
+                        .HasMaxLength(254);
 
                     b.HasKey("Id");
 
                     b.HasIndex("OrganizationId");
 
-                    b.ToTable("OrganizationUser");
+                    b.HasIndex("UserId");
+
+                    b.ToTable("OrganizationUsers");
                 });
 
             modelBuilder.Entity("Celebrity.Data.Models.WebHook", b =>
@@ -160,9 +191,9 @@ namespace Celebrity.Data.Migrations
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<DateTimeOffset>("DateCreated");
+                    b.Property<DateTimeOffset?>("DateCreated");
 
-                    b.Property<DateTimeOffset>("DateModified");
+                    b.Property<DateTimeOffset?>("DateModified");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -172,13 +203,13 @@ namespace Celebrity.Data.Migrations
 
                     b.Property<string>("Url")
                         .IsRequired()
-                        .HasMaxLength(1024);
+                        .HasMaxLength(2083);
 
                     b.Property<string>("UserCreated")
-                        .HasMaxLength(128);
+                        .HasMaxLength(254);
 
                     b.Property<string>("UserModified")
-                        .HasMaxLength(128);
+                        .HasMaxLength(254);
 
                     b.HasKey("Id");
 
@@ -192,19 +223,19 @@ namespace Celebrity.Data.Migrations
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<DateTimeOffset>("DateCreated");
+                    b.Property<DateTimeOffset?>("DateCreated");
 
-                    b.Property<DateTimeOffset>("DateModified");
+                    b.Property<DateTimeOffset?>("DateModified");
 
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(128);
 
                     b.Property<string>("UserCreated")
-                        .HasMaxLength(128);
+                        .HasMaxLength(254);
 
                     b.Property<string>("UserModified")
-                        .HasMaxLength(128);
+                        .HasMaxLength(254);
 
                     b.Property<string>("Value");
 
@@ -217,11 +248,29 @@ namespace Celebrity.Data.Migrations
                     b.ToTable("WebHookParameter");
                 });
 
+            modelBuilder.Entity("Celebrity.Data.Models.Identity.UserRole", b =>
+                {
+                    b.HasOne("Celebrity.Data.Models.Identity.Role", "Role")
+                        .WithMany("UserRoles")
+                        .HasForeignKey("RoleId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("Celebrity.Data.Models.Identity.User", "User")
+                        .WithMany("UserRoles")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
             modelBuilder.Entity("Celebrity.Data.Models.OrganizationUser", b =>
                 {
-                    b.HasOne("Celebrity.Data.Models.Organization")
+                    b.HasOne("Celebrity.Data.Models.Organization", "Organization")
                         .WithMany("Users")
                         .HasForeignKey("OrganizationId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("Celebrity.Data.Models.Identity.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 

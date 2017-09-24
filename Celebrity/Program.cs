@@ -8,9 +8,12 @@
     using System.Threading.Tasks;
     using Core.Extensions;
     using Data;
+    using Data.Extensions;
     using Data.Models;
+    using Data.Models.Identity;
     using Microsoft.AspNetCore;
     using Microsoft.AspNetCore.Hosting;
+    using Microsoft.EntityFrameworkCore;
     using Microsoft.Extensions.DependencyInjection;
     using Newtonsoft.Json;
     using Nito.AsyncEx;
@@ -22,12 +25,16 @@
         private static readonly IReadOnlyDictionary<string, Type> SeedDataFiles = new ReadOnlyDictionary<string, Type>(
             new Dictionary<string, Type>
             {
-                {"Celebrity.Seeding.Organization.json", typeof(List<Organization>)}
+                {"Celebrity.Seeding.Role.json", typeof(Role[])},
+                {"Celebrity.Seeding.User.json", typeof(User[])},
+                {"Celebrity.Seeding.UserRole.json", typeof(UserRole[])},
+                {"Celebrity.Seeding.Organization.json", typeof(Organization[])},
+                {"Celebrity.Seeding.OrganizationUser.json", typeof(OrganizationUser[])},
             });
 
         public static void Main(string[] args)
         {
-            AsyncContext.Run(async () => await Program.MainAsync(args).ConfigureAwait(false));
+            AsyncContext.Run(async () => await Program.MainAsync(args).ConfigureAwait(true));
         }
 
         private static async Task MainAsync(string[] args)
@@ -41,24 +48,25 @@
                 using (var scope = host.Services.CreateScope())
                 using (var context = scope.ServiceProvider.GetService<CelebrityDataContext>())
                 {
-                    var created = await context.Database.EnsureCreatedAsync().ConfigureAwait(false);
-
-                    if (created)
+                    if (context.HasMigrations())
                     {
-                        await Program.CreateSeedData(context).ConfigureAwait(false);
+                        await context.Database.MigrateAsync().ConfigureAwait(true);
+                        await Program.CreateSeedDataAsync(context).ConfigureAwait(true);
                     }
                 }
 
-                await host.RunAsync().ConfigureAwait(false);
+                await host.RunAsync().ConfigureAwait(true);
             }
             catch (Exception ex)
             {
                 var filename = Path.Combine(AppContext.BaseDirectory, Program.ErrorFileName);
-                await File.WriteAllTextAsync(filename, ex.ToExceptionString()).ConfigureAwait(false);
+                var message = ex.ToExceptionString(true);
+                await File.WriteAllTextAsync(filename, message).ConfigureAwait(false);
+                Console.WriteLine(message);
             }
         }
 
-        private static async Task CreateSeedData(CelebrityDataContext context)
+        private static async Task CreateSeedDataAsync(CelebrityDataContext context)
         {
             var assembly = typeof(Program).Assembly;
 
@@ -70,13 +78,14 @@
                 using (var stream = assembly.GetManifestResourceStream(key))
                 using (var reader = new StreamReader(stream, Encoding.UTF8))
                 {
-                    var content = await reader.ReadToEndAsync().ConfigureAwait(false);
+                    var content = await reader.ReadToEndAsync().ConfigureAwait(true);
                     var records = JsonConvert.DeserializeObject(content, type);
 
-                    context.AddRange(records);
-                    await context.SaveChangesAsync().ConfigureAwait(true);
+                    context.AddRange((object[]) records);
                 }
             }
+
+            await context.SaveChangesAsync().ConfigureAwait(true);
         }
     }
 }

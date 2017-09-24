@@ -6,10 +6,14 @@
 
     public class OrganizationUser : DataModel<Guid>
     {
-        [ForeignKey(nameof(User))]
+        public User User { get; set; }
+
+        [ForeignKey(nameof(Identity.User))]
         public Guid UserId { get; set; }
 
-        [ForeignKey(nameof(Organization))]
+        public Organization Organization { get; set; }
+
+        [ForeignKey(nameof(Models.Organization))]
         public Guid OrganizationId { get; set; }
     }
 }

@@ -27,7 +27,7 @@
         public CelebrityDataContext CreateDbContext(string[] args)
         {
             var builder = new DbContextOptionsBuilder<CelebrityDataContext>();
-            builder.UseSqlite(this.Configuration.GetConnectionString("Default"));
+            builder.UseMySql(this.Configuration.GetConnectionString("Default"));
 
             return new CelebrityDataContext(builder.Options);
         }
