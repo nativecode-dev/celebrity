@@ -1,9 +1,9 @@
-﻿namespace Celebrity.Data.Models.Identity
+﻿namespace Celebrity.Data.Entities.Identity
 {
     using System;
     using System.ComponentModel.DataAnnotations.Schema;
 
-    public class UserRole : DataModel<Guid>
+    public class UserRole : Entity<Guid>
     {
         public Role Role { get; set; }
 

@@ -2,9 +2,10 @@
 {
     using System;
     using Microsoft.AspNetCore.Mvc;
+    using Web;
 
-    [Route("webhooks")]
-    public class WebHookController : Controller
+    [Route("api/webhooks")]
+    public class WebHookController : BaseController
     {
         [HttpGet]
         public IActionResult Get()

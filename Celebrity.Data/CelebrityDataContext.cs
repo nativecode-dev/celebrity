@@ -4,11 +4,11 @@
     using System.Linq;
     using System.Threading;
     using System.Threading.Tasks;
+    using Entities;
+    using Entities.Identity;
     using Microsoft.EntityFrameworkCore;
-    using Models;
-    using Models.Identity;
 
-    public class CelebrityDataContext : DbContext
+    public partial class CelebrityDataContext : DbContext
     {
         public CelebrityDataContext(DbContextOptions options) : base(options)
         {
@@ -43,14 +43,14 @@
         {
             var entries = from entry in this.ChangeTracker.Entries()
                 let type = entry.Entity.GetType()
-                where type.GetInterfaces().Any(i => i == typeof(IDataModel))
+                where type.GetInterfaces().Any(i => i == typeof(IEntity))
                 select entry;
 
             foreach (var entry in entries)
             {
-                var model = (IDataModel) entry.Entity;
+                var model = (IEntity) entry.Entity;
 
-                if (model is IDataModel<Guid> keymaster)
+                if (model is IEntity<Guid> keymaster)
                 {
                     if (keymaster.Id == default(Guid))
                     {

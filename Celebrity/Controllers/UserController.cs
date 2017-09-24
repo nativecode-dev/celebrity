@@ -4,9 +4,10 @@
     using Microsoft.AspNetCore.Authentication;
     using Microsoft.AspNetCore.Mvc;
     using Models.Security;
+    using Web;
 
-    [Route("users")]
-    public class UserController : Controller
+    [Route("api/users")]
+    public class UserController : BaseController
     {
         private readonly AuthenticationService authentication;
 

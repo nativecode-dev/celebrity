@@ -1,11 +1,11 @@
-﻿namespace Celebrity.Data.Models
+﻿namespace Celebrity.Data.Entities
 {
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using Core;
 
-    public class Organization : DataModel<Guid>
+    public class Organization : Entity<Guid>
     {
         public string Description { get; set; }
 

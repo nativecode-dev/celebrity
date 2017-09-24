@@ -2,9 +2,10 @@
 {
     using System;
     using Microsoft.AspNetCore.Mvc;
+    using Web;
 
-    [Route("organizations")]
-    public class OrganizationController : Controller
+    [Route("api/organizations")]
+    public class OrganizationController : BaseController
     {
         [HttpGet]
         public IActionResult Get()

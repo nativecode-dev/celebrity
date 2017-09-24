@@ -1,15 +1,13 @@
 ﻿namespace Celebrity
 {
     using System;
-    using Data;
-    using Data.Models.Identity;
+    using Data.Extensions;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
-    using Microsoft.AspNetCore.Identity;
-    using Microsoft.EntityFrameworkCore;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Logging;
+    using Web.Extensions;
 
     public class ProgramStartup
     {
@@ -22,14 +20,8 @@
 
         public IServiceProvider ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<CelebrityDataContext>(this.ConfigureDataContext);
-
-            services.AddIdentity<User, Role>()
-                .AddEntityFrameworkStores<CelebrityDataContext>()
-                .AddDefaultTokenProviders();
-
-            services.AddMvc();
-
+            services.AddCelebrityData(this.Configuration);
+            services.AddCelebrityMvc(this.Configuration);
             return services.BuildServiceProvider();
         }
 
@@ -40,17 +32,7 @@
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseAuthentication();
-            app.UseMvcWithDefaultRoute();
-            app.UseStaticFiles();
-        }
-
-        private void ConfigureDataContext(DbContextOptionsBuilder options)
-        {
-            var connection = this.Configuration.GetConnectionString("Default");
-
-            options.UseMySql(connection,
-                builder => builder.MigrationsAssembly(typeof(CelebrityDataContext).Assembly.FullName));
+            app.UseCelebrityMvc();
         }
     }
 }

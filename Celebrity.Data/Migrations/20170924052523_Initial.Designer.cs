@@ -11,7 +11,7 @@ using System;
 namespace Celebrity.Data.Migrations
 {
     [DbContext(typeof(CelebrityDataContext))]
-    [Migration("20170924015152_Initial")]
+    [Migration("20170924052523_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -21,7 +21,7 @@ namespace Celebrity.Data.Migrations
                 .HasAnnotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn)
                 .HasAnnotation("ProductVersion", "2.0.0-rtm-26452");
 
-            modelBuilder.Entity("Celebrity.Data.Models.Identity.Role", b =>
+            modelBuilder.Entity("Celebrity.Data.Entities.Identity.Role", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd();
@@ -47,7 +47,7 @@ namespace Celebrity.Data.Migrations
                     b.ToTable("Roles");
                 });
 
-            modelBuilder.Entity("Celebrity.Data.Models.Identity.User", b =>
+            modelBuilder.Entity("Celebrity.Data.Entities.Identity.User", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd();
@@ -98,7 +98,7 @@ namespace Celebrity.Data.Migrations
                     b.ToTable("Users");
                 });
 
-            modelBuilder.Entity("Celebrity.Data.Models.Identity.UserRole", b =>
+            modelBuilder.Entity("Celebrity.Data.Entities.Identity.UserRole", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd();
@@ -126,7 +126,7 @@ namespace Celebrity.Data.Migrations
                     b.ToTable("UserRoles");
                 });
 
-            modelBuilder.Entity("Celebrity.Data.Models.Organization", b =>
+            modelBuilder.Entity("Celebrity.Data.Entities.Organization", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd();
@@ -159,7 +159,7 @@ namespace Celebrity.Data.Migrations
                     b.ToTable("Organizations");
                 });
 
-            modelBuilder.Entity("Celebrity.Data.Models.OrganizationUser", b =>
+            modelBuilder.Entity("Celebrity.Data.Entities.OrganizationUser", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd();
@@ -187,7 +187,7 @@ namespace Celebrity.Data.Migrations
                     b.ToTable("OrganizationUsers");
                 });
 
-            modelBuilder.Entity("Celebrity.Data.Models.WebHook", b =>
+            modelBuilder.Entity("Celebrity.Data.Entities.WebHook", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd();
@@ -219,7 +219,7 @@ namespace Celebrity.Data.Migrations
                     b.ToTable("WebHooks");
                 });
 
-            modelBuilder.Entity("Celebrity.Data.Models.WebHookParameter", b =>
+            modelBuilder.Entity("Celebrity.Data.Entities.WebHookParameter", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd();
@@ -249,43 +249,43 @@ namespace Celebrity.Data.Migrations
                     b.ToTable("WebHookParameter");
                 });
 
-            modelBuilder.Entity("Celebrity.Data.Models.Identity.UserRole", b =>
+            modelBuilder.Entity("Celebrity.Data.Entities.Identity.UserRole", b =>
                 {
-                    b.HasOne("Celebrity.Data.Models.Identity.Role", "Role")
+                    b.HasOne("Celebrity.Data.Entities.Identity.Role", "Role")
                         .WithMany("UserRoles")
                         .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade);
 
-                    b.HasOne("Celebrity.Data.Models.Identity.User", "User")
+                    b.HasOne("Celebrity.Data.Entities.Identity.User", "User")
                         .WithMany("UserRoles")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("Celebrity.Data.Models.OrganizationUser", b =>
+            modelBuilder.Entity("Celebrity.Data.Entities.OrganizationUser", b =>
                 {
-                    b.HasOne("Celebrity.Data.Models.Organization", "Organization")
+                    b.HasOne("Celebrity.Data.Entities.Organization", "Organization")
                         .WithMany("Users")
                         .HasForeignKey("OrganizationId")
                         .OnDelete(DeleteBehavior.Cascade);
 
-                    b.HasOne("Celebrity.Data.Models.Identity.User", "User")
+                    b.HasOne("Celebrity.Data.Entities.Identity.User", "User")
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("Celebrity.Data.Models.WebHook", b =>
+            modelBuilder.Entity("Celebrity.Data.Entities.WebHook", b =>
                 {
-                    b.HasOne("Celebrity.Data.Models.Organization")
+                    b.HasOne("Celebrity.Data.Entities.Organization")
                         .WithMany("WebHooks")
                         .HasForeignKey("OrganizationId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("Celebrity.Data.Models.WebHookParameter", b =>
+            modelBuilder.Entity("Celebrity.Data.Entities.WebHookParameter", b =>
                 {
-                    b.HasOne("Celebrity.Data.Models.WebHook")
+                    b.HasOne("Celebrity.Data.Entities.WebHook")
                         .WithMany("Parameters")
                         .HasForeignKey("WebHookId")
                         .OnDelete(DeleteBehavior.Cascade);

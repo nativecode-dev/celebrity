@@ -1,10 +1,12 @@
-﻿namespace Celebrity.Data
+﻿namespace Celebrity.Data.Entities.Identity
 {
     using System;
+    using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using Core;
+    using Microsoft.AspNetCore.Identity;
 
-    public abstract class DataModel : IDataModel
+    public class Role : IdentityRole<Guid>, IEntity<Guid>
     {
         [DataType(DataType.DateTime)]
         public DateTimeOffset? DateCreated { get; set; }
@@ -17,11 +19,7 @@
 
         [StringLength(CommonLengths.Email)]
         public string UserModified { get; set; }
-    }
 
-    public abstract class DataModel<TKey> : DataModel, IDataModel<TKey> where TKey : IEquatable<TKey>
-    {
-        [Key]
-        public TKey Id { get; set; }
+        public virtual ICollection<UserRole> UserRoles { get; set; }
     }
 }

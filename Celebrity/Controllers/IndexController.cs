@@ -4,13 +4,13 @@
     using Microsoft.AspNetCore.Mvc;
 
     [Route("")]
-    public class DefaultController : Controller
+    public class IndexController : Controller
     {
         [HttpGet]
         [AllowAnonymous]
-        public IActionResult Get()
+        public ViewResult Index()
         {
-            return this.Ok();
+            return this.View();
         }
     }
 }

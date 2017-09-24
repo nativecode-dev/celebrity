@@ -21,6 +21,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Config", "Config", "{303014
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Celebrity", "Celebrity\Celebrity.csproj", "{D82EB4A5-0A35-4D5D-AED0-6DAD9F2018D4}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Celebrity.Web", "Celebrity.Web\Celebrity.Web.csproj", "{D30A1E4E-8C64-4EA9-9948-80F2D1D8AA41}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -51,6 +53,10 @@ Global
 		{D82EB4A5-0A35-4D5D-AED0-6DAD9F2018D4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D82EB4A5-0A35-4D5D-AED0-6DAD9F2018D4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D82EB4A5-0A35-4D5D-AED0-6DAD9F2018D4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D30A1E4E-8C64-4EA9-9948-80F2D1D8AA41}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D30A1E4E-8C64-4EA9-9948-80F2D1D8AA41}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D30A1E4E-8C64-4EA9-9948-80F2D1D8AA41}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D30A1E4E-8C64-4EA9-9948-80F2D1D8AA41}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

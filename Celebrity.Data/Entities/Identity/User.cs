@@ -1,4 +1,4 @@
-﻿namespace Celebrity.Data.Models.Identity
+﻿namespace Celebrity.Data.Entities.Identity
 {
     using System;
     using System.Collections.Generic;
@@ -6,7 +6,7 @@
     using Core;
     using Microsoft.AspNetCore.Identity;
 
-    public class User : IdentityUser<Guid>, IDataModel<Guid>
+    public class User : IdentityUser<Guid>, IEntity<Guid>
     {
         [StringLength(128, MinimumLength = 32)]
         public string ApiToken { get; set; }

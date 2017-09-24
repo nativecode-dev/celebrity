@@ -1,11 +1,11 @@
-﻿namespace Celebrity.Data.Models
+﻿namespace Celebrity.Data.Entities
 {
     using System;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
     using Core;
 
-    public class WebHookParameter : DataModel<Guid>
+    public class WebHookParameter : Entity<Guid>
     {
         [Required]
         [StringLength(CommonLengths.Slug)]

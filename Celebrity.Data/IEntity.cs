@@ -2,7 +2,7 @@
 {
     using System;
 
-    public interface IDataModel
+    public interface IEntity
     {
         DateTimeOffset? DateCreated { get; set; }
 
@@ -13,7 +13,7 @@
         string UserModified { get; set; }
     }
 
-    public interface IDataModel<TKey> : IDataModel where TKey : IEquatable<TKey>
+    public interface IEntity<TKey> : IEntity where TKey : IEquatable<TKey>
     {
         TKey Id { get; set; }
     }
