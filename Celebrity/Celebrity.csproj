@@ -8,7 +8,6 @@
   <ItemGroup>
     <Content Include="appSettings.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      <DependentUpon>appSettings.json</DependentUpon>
     </Content>
     <Content Include="appSettings.Development.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
