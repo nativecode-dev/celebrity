@@ -26,6 +26,11 @@
                 {"Celebrity.Data.Seeding.OrganizationUser.json", typeof(OrganizationUser[])}
             });
 
+        public static void Initialize(IWebHost host)
+        {
+            CelebrityDataContext.InitializeAsync(host).GetAwaiter().GetResult();
+        }
+
         public static async Task InitializeAsync(IWebHost host)
         {
             using (var scope = host.Services.CreateScope())

@@ -1,11 +1,10 @@
-﻿namespace Celebrity.Controllers
+﻿namespace Celebrity.Controllers.Api
 {
     using System;
     using Microsoft.AspNetCore.Mvc;
-    using Web;
 
     [Route("api/webhooks")]
-    public class WebHookController : BaseController
+    public class WebHookController : ControllerBase
     {
         [HttpGet]
         public IActionResult Get()

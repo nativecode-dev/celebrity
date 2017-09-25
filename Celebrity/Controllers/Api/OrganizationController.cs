@@ -1,11 +1,10 @@
-﻿namespace Celebrity.Controllers
+﻿namespace Celebrity.Controllers.Api
 {
     using System;
     using Microsoft.AspNetCore.Mvc;
-    using Web;
 
     [Route("api/organizations")]
-    public class OrganizationController : BaseController
+    public class OrganizationController : ControllerBase
     {
         [HttpGet]
         public IActionResult Get()

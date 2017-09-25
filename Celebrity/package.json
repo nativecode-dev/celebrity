@@ -1,0 +1,14 @@
+{
+  "name": "celebrity",
+  "version": "1.0.0",
+  "private": true,
+  "dependencies": {},
+  "devDependencies": {
+    "babel-loader": "^7.1.2",
+    "less": "^2.7.2",
+    "less-loader": "^4.0.5",
+    "tslint": "^5.7.0",
+    "webpack-dev-server": "^2.8.2"
+  },
+  "scripts": {}
+}

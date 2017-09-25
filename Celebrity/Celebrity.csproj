@@ -1,22 +1,22 @@
-<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
+    <ApplicationInsightsAnnotationResourceId>/subscriptions/feb41f11-8890-4d5f-bd7b-bf8f03d9a3d1/resourcegroups/Default-ApplicationInsights-CentralUS/providers/microsoft.insights/components/Celebrity</ApplicationInsightsAnnotationResourceId>
+    <ApplicationInsightsResourceId>/subscriptions/feb41f11-8890-4d5f-bd7b-bf8f03d9a3d1/resourcegroups/Default-ApplicationInsights-CentralUS/providers/microsoft.insights/components/Celebrity</ApplicationInsightsResourceId>
     <OutputType>Exe</OutputType>
+    <PreserveCompilationContext>true</PreserveCompilationContext>
     <TargetFramework>netcoreapp2.0</TargetFramework>
+    <TypeScriptToolsVersion>Latest</TypeScriptToolsVersion>
+    <UserSecretsId>nativecode</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
-    <Content Include="appsettings.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="appsettings.Development.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      <DependentUpon>appsettings.json</DependentUpon>
-    </Content>
-    <Content Include="appsettings.Production.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      <DependentUpon>appsettings.json</DependentUpon>
-    </Content>
+    <Content Include="Content\**\*" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <DotNetCliToolReference Include="Microsoft.EntityFrameworkCore.Tools.DotNet" Version="2.0.0" />
+    <DotNetCliToolReference Include="Microsoft.Extensions.SecretManager.Tools" Version="2.0.0" />
   </ItemGroup>
 
   <ItemGroup>
@@ -24,13 +24,27 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore" Version="2.0.0" />
-    <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="2.0.0" />
-    <PackageReference Include="Nito.AsyncEx.Context" Version="1.1.0" />
+    <None Update=".dockerignore">
+      <DependentUpon>Dockerfile</DependentUpon>
+    </None>
+    <None Update=".npmignore">
+      <DependentUpon>package.json</DependentUpon>
+    </None>
   </ItemGroup>
 
   <ItemGroup>
-    <DotNetCliToolReference Include="Microsoft.EntityFrameworkCore.Tools.DotNet" Version="2.0.0" />
+    <None Update="wwwroot\**\*">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.1.1" />
+    <PackageReference Include="Microsoft.AspNetCore" Version="2.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="2.0.0" />
+    <PackageReference Include="Nito.AsyncEx.Context" Version="1.1.0" />
+    <PackageReference Include="Webpack" Version="4.0.0" />
+    <PackageReference Include="Yarn.MSBuild" Version="1.0.0" />
   </ItemGroup>
 
   <ItemGroup>
@@ -42,9 +56,17 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Update=".dockerignore">
-      <DependentUpon>Dockerfile</DependentUpon>
-    </None>
+    <TypeScriptCompile Include="Content\client\Startup.ts" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Update="tslint.json">
+      <DependentUpon>tsconfig.json</DependentUpon>
+    </Content>
   </ItemGroup>
 
 </Project>

@@ -2,8 +2,6 @@
 {
     public class Global
     {
-        public bool IncludeApiControllers { get; set; }
-
-        public bool IncludeWebControllers { get; set; }
+        public AuthOpenId AuthOpenId { get; set; }
     }
 }

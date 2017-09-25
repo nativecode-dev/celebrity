@@ -4,13 +4,13 @@
 
     public static class ApplicationBuilderExtensions
     {
-        public static IApplicationBuilder UseCelebrityMvc(this IApplicationBuilder builder)
+        public static IApplicationBuilder UseCelebrityMvc(this IApplicationBuilder app)
         {
-            builder.UseAuthentication();
-            builder.UseMvcWithDefaultRoute();
-            builder.UseStaticFiles();
+            app.UseAuthentication();
+            app.UseMvcWithDefaultRoute();
+            app.UseStaticFiles();
 
-            return builder;
+            return app;
         }
     }
 }

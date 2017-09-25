@@ -1,17 +1,16 @@
-﻿namespace Celebrity.Controllers
+﻿namespace Celebrity.Controllers.Api
 {
     using System;
     using Microsoft.AspNetCore.Authentication;
     using Microsoft.AspNetCore.Mvc;
     using Models.Security;
-    using Web;
 
     [Route("api/users")]
-    public class UserController : BaseController
+    public class UserController : ControllerBase
     {
-        private readonly AuthenticationService authentication;
+        private readonly IAuthenticationService authentication;
 
-        public UserController(AuthenticationService authentication)
+        public UserController(IAuthenticationService authentication)
         {
             this.authentication = authentication;
         }
@@ -25,7 +24,7 @@
         [HttpPut]
         public IActionResult Post([FromBody] LoginModel login)
         {
-            throw new NotSupportedException();
+            return this.Ok();
         }
     }
 }

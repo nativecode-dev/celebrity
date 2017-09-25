@@ -22,14 +22,18 @@
         {
             try
             {
-                var builder = WebHost.CreateDefaultBuilder(args)
-                    .UseUrls("http://*:5000")
+                var builder = WebHost
+                    .CreateDefaultBuilder(args)
                     .CaptureStartupErrors(true)
-                    .UseStartup<ProgramStartup>();
+                    .UseApplicationInsights()
+                    .UseStartup<ProgramStartup>()
+                    .UseUrls("http://*:5000");
 
                 var host = builder.Build();
 
-                await CelebrityDataContext.InitializeAsync(host).ConfigureAwait(true);
+                await CelebrityDataContext
+                    .InitializeAsync(host)
+                    .ConfigureAwait(true);
 
                 await host.RunAsync().ConfigureAwait(true);
             }

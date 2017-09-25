@@ -1,0 +1,26 @@
+{
+  "defaultSeverity": "error",
+  "extends": [
+    "tslint:recommended"
+  ],
+  "jsRules": {
+    "max-line-length": [true, 160]
+  },
+  "rules": {
+    "class-name": true,
+    "eofline": true,
+    "interface-name": true,
+    "max-line-length": [true, 120],
+    "new-parens": true,
+    "no-internal-module": false,
+    "no-namespace": false,
+    "no-trailing-whitespace": true,
+    "no-unused-expression": true,
+    "no-var-keyword": true,
+    "only-arrow-functions": true,
+    "quotemark": [true, "single"],
+    "semicolon": false,
+    "trailing-comma": true
+  },
+  "rulesDirectory": []
+}

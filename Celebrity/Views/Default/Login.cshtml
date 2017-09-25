@@ -1,0 +1,26 @@
+﻿@model Celebrity.Models.Security.LoginModel
+
+@{
+    ViewBag.Title = "Login";
+    Layout = "Layout";
+}
+
+<h2>Login</h2>
+
+<form asp-action="Login" asp-controller="Default" method="post">
+    <div>
+        <label asp-for="Login">
+            <input asp-for="Login"/>
+        </label>
+    </div>
+
+    <div>
+        <label asp-for="Password">
+            <input asp-for="Password"/>
+        </label>
+    </div>
+
+    <div>
+        <button type="submit">Login</button>
+    </div>
+</form>

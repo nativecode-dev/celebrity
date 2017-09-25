@@ -1,6 +1,7 @@
 ﻿namespace Celebrity
 {
     using System;
+    using System.Collections.Generic;
     using Data.Extensions;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
@@ -8,6 +9,7 @@
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Logging;
     using Web.Extensions;
+    using Webpack;
 
     public class ProgramStartup
     {
@@ -20,9 +22,11 @@
 
         public IServiceProvider ConfigureServices(IServiceCollection services)
         {
-            services.AddCelebrityData(this.Configuration);
-            services.AddCelebrityMvc(this.Configuration);
-            return services.BuildServiceProvider();
+            return services
+                .AddCelebrityData(this.Configuration)
+                .AddCelebrityMvc(this.Configuration)
+                .AddWebpack()
+                .BuildServiceProvider();
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory logger)
@@ -33,6 +37,29 @@
             }
 
             app.UseCelebrityMvc();
+            app.UseWebpack(ProgramStartup.CreateWebpack(env));
+        }
+
+        private static WebpackOptions CreateWebpack(IHostingEnvironment env)
+        {
+            var options = new WebpackOptions("Content/client/Startup.ts")
+            {
+                EnableES2015 = true,
+                StylesTypes = new List<StylesType>
+                {
+                    StylesType.Css,
+                    StylesType.Less,
+                    StylesType.Sass
+                }
+            };
+
+            if (env.IsDevelopment())
+            {
+                options.DevServerOptions = new WebpackDevServerOptions(port: 5000);
+                options.EnableHotLoading = true;
+            }
+
+            return options;
         }
     }
 }
